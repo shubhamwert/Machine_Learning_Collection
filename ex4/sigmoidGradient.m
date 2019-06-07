@@ -13,7 +13,7 @@ g = zeros(size(z));
 %               each value of z (z can be a matrix, vector or scalar).
 
 m=sigmoid(z);
-g=m*(1-m);
+g=m.*(1-m);
 
 
 
