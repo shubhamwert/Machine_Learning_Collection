@@ -54,17 +54,17 @@ error_val   = zeros(m, 1);
 % ---------------------- Sample Solution ----------------------
 
 for i=1:m
-	temp1 = X(1:i,:);
-lambda=0;
-	temp2 = y(1:i);
-
-	theta=trainLinearReg(temp1, temp2, lambda);	
+	X_train = X(1:i,:);
 	
-	[Jtrain,grad_train]=linearRegCostFunction(temp1,temp2,theta,0); 
+	Y_train = y(1:i);
+
+	theta=trainLinearReg(X_train, Y_train, lambda);	
+	
+	[Jtrain,grad_train]=linearRegCostFunction(X_train,Y_train,theta,0); 
 
 	[Jval,grad_val]=linearRegCostFunction(Xval,yval,theta,0);
 
-error_train(i) = Jtrain;  
+	error_train(i) = Jtrain;  
 
     error_val(i) = Jval;
 
