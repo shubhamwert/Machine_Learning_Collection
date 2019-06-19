@@ -112,7 +112,7 @@ A = double(imread('bird_small.png'));
 %   load ('bird_small.mat');
 
 A = A / 255; % Divide by 255 so that all values are in the range 0 - 1
-
+pause;
 % Size of the image
 img_size = size(A);
 
