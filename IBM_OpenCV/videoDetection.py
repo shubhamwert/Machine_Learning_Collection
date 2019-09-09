@@ -22,3 +22,4 @@ while(True):
 cap.release()
 cv2.destroyAllWindows()
 
+background = np.flip(background, axis = 1)

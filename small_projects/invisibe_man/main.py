@@ -45,7 +45,7 @@ while(True):
     res2 = cv.bitwise_and(img, img, mask = mask2) 
     final_output = cv.addWeighted(res1, 1, res2, 1, 0) 
   
-    cv.imshow("INVISIBLE MAN", final_output) 
+    cv.imshow("INVISIBLE Cloack", final_output) 
     k = cv.waitKey(10) 
     if k == 27: 
         break
