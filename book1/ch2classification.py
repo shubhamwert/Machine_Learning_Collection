@@ -91,5 +91,61 @@ for t in range(3):
     plt.plot(range(0,50),np.full((50,),avg))
 
    
-    
-#Cross validation and Testing
+#okay lets create a model to classify virginia 
+# we will try to maximize accuracy for different attributes
+
+x_not_setosa=x[~is_not_setosa]
+labels_not_setosa=x[~is_not_setosa]
+is_virginia=(labels == 'virginica')
+is_not_virginia=~is_virginia
+best_acc=-1
+
+for fi in range(x.shape[1]):
+    thresh=x[:,fi]
+    for t in thresh:
+        feature_i=x[:,fi]
+        pred=(feature_i>t)
+        acc=np.sum(pred == is_virginia)/len(is_virginia)
+        rev_acc=np.sum(pred == ~is_virginia)/len(is_virginia)
+        if rev_acc > acc:
+            reverse = True
+            acc = rev_acc
+        else:
+            reverse = False
+        if acc > best_acc:
+            best_acc = acc 
+            best_fi = fi
+            best_t = t 
+            best_reverse = reverse
+
+# okay now our system to classify 
+
+def is_virginica_test(fi,t,reverse,example):
+    test=example[fi]>t
+    if reverse:
+        test=not test
+    return test
+
+
+  #now our classifier
+    #visualiztion    
+
+for it in range(3):
+    if it==0:
+        c='r'
+        marker='*'
+    if it==1:
+        c='b'
+        marker='x'
+    if it==2:
+        c='g'
+        marker='o'
+    plt.scatter(range(0,len(x[target==it,fi])),x[target==it,fi],marker=marker,c=c)
+    plt.xlabel(labels[fi])
+    plt.ylabel('')
+  
+    plt.plot(range(0,50),np.full((50,),t))
+    plt.plot(range(0,50),np.full((50,),0.75)) #other line to classify setosa
+
+
+
