@@ -7,7 +7,7 @@ clear ; close all; clc
 %data%
 X=zeros(1000,1);
 for num=1:1000
-    X(num)=num/1000;
+    X(num)=num/500-1;
 
 
 end
@@ -49,8 +49,8 @@ pause;
 
 fprintf('\nInitializing Neural Network Parameters ...\n')
 
-initial_Theta1 = randInitializeWeights(input_layer_size,hidden_layer_size)
-initial_Theta2 = randInitializeWeights(hidden_layer_size,lables)
+initial_Theta1 = randInitializeWeights(input_layer_size,hidden_layer_size);
+initial_Theta2 = randInitializeWeights(hidden_layer_size,lables);
 
 % Unroll parameters
 initial_nn_params = [initial_Theta1(:) ; initial_Theta2(:)];
@@ -59,7 +59,7 @@ J = nnCostFunction(initial_nn_params,input_layer_size,hidden_layer_size, lables,
 %check if nn is fine%
 %checkNNGradients;
 
-lambda = 3;
+lambda = 2;
 %checkNNGradients(lambda);
 
 %NN training
@@ -90,7 +90,7 @@ pause;
 hold on;
 X1=zeros(1000,1);
 for iter=1:1000
-    X1(iter)=iter/1000;
+    X1(iter)=iter/500-1;
     end
 Y1=(sin(pi*X1/200)+X1.^2+X1.^3)/2;
 
