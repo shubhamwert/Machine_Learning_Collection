@@ -7,7 +7,7 @@ Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):en
                  num_labels, (hidden_layer_size + 1));
 
 m = size(X, 1);
-
+alpha=1;
 J = 0;
 Theta1_grad = zeros(size(Theta1));
 Theta2_grad = zeros(size(Theta2));
@@ -35,8 +35,8 @@ Theta1_grad = Theta1_grad + alpha*(1/m) * l_delta1;
 Theta2_grad = Theta2_grad + alpha*(1/m) * l_delta2;
 
 %regularization%
-Theta1_grad(:,2:end) = Theta1_grad(:,2:end) + (lambda/m)*(Theta1(:,2:end));
-Theta2_grad(:,2:end) = Theta2_grad(:,2:end) + (lambda/m)*(Theta2(:,2:end));
+Theta1_grad(:,2:end) = Theta1_grad(:,2:end) + alpha*(lambda/m)*(Theta1(:,2:end));
+Theta2_grad(:,2:end) = Theta2_grad(:,2:end) + alpha*(lambda/m)*(Theta2(:,2:end));
 
 
 J = J +  (lambda/(2*m))*((sum(sum(Theta1(:,2:end).^2))) + sum(sum(Theta2(:,2:end).^2)));

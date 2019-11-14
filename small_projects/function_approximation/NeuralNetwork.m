@@ -95,4 +95,4 @@ for iter=1:1000
 Y1=(sin(pi*X1/200)+X1.^2+X1.^3)/2;
 
 plot(X1,Y1,'rx','MarkerSize',4);
-plot(X1,pred([X1,X1.^2,X1.^3],Theta1,Theta2),'b-','MarkerSize',4)
+plot(X1,pred([X1,X1.^2,X1.^3],Theta1,Theta2),'bo','MarkerSize',4)

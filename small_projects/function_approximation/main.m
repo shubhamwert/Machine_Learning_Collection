@@ -1,5 +1,5 @@
 
-fprintf("Neural Network Initialized ....");
+fprintf("\nNeural Network Initialized ....\n");
 NeuralNetwork
-fprintf("Press any key to exit");
+fprintf("\nPress any key to exit\n");
 pause;
