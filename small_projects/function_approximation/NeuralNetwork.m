@@ -12,17 +12,17 @@ for num=1:1000
 
 end
 
-Y=(sin(pi*X/200)+X.^2+X.^3)/2;
+Y=(sin(2*pi*X/10)+X.^2+X.^3+cos(2*pi*X/10))/4;
 
 
 hold off;
 plot(X, Y, 'rx', 'MarkerSize', 5);
-X=[X,X.^2,X.^3];
+X=[sin(2*pi*X/10),X,X.^2,X.^3];
 fprintf("plot drawn\n");
 pause;
 %NN parameters%
-input_layer_size = 3;
-hidden_layer_size=51;
+input_layer_size = size(X,2);
+hidden_layer_size=21;
 lables=1;
 
 
@@ -87,12 +87,16 @@ Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):en
                  lables, (hidden_layer_size + 1));
 pause;
 
-hold on;
+hold off;
 X1=zeros(1000,1);
 for iter=1:1000
     X1(iter)=iter/500-1;
     end
-Y1=(sin(pi*X1/200)+X1.^2+X1.^3)/2;
+Y1=(sin(2*pi*X1/10)+X1.^2+X1.^3+cos(2*pi*X1/10))/4;
 
 plot(X1,Y1,'rx','MarkerSize',4);
-plot(X1,pred([X1,X1.^2,X1.^3],Theta1,Theta2),'bo','MarkerSize',4)
+hold on;
+plot(X1,pred([sin(2*pi*X1/10),X1,X1.^2,X1.^3],Theta1,Theta2),'bo','MarkerSize',4)
+csvwrite("shubham1theta1",Theta1);
+csvwrite("shubham1Theta2",Theta2);
+fprintf("\nError in Neural Model is %f\n",Error(Y1,pred([sin(2*pi*X1/10),X1,X1.^2,X1.^3],Theta1,Theta2)))
