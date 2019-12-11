@@ -27,7 +27,7 @@ def lets_kmeans(data,target):
     model=KMeans(n_clusters=20,max_iter=1000)
     model.fit(data)
     labels=target
-    plt.scatter(labels, model.labels__)
+    plt.scatter(labels, model.labels_)
     plt.xlabel('Newsgroup') 
     plt.ylabel('Cluster') 
     plt.show() 
@@ -35,9 +35,9 @@ def lets_kmeans(data,target):
 if __name__ == "__main__":
     
     groups = fetch_20newsgroups()
-    visualize_data_set(groups.target)
+    # visualize_data_set(groups.target)
 
-    count_words(groups)
+    # count_words(groups)
     input("press enter to continue")
 
     print("stemming and lemming it")
@@ -45,7 +45,7 @@ if __name__ == "__main__":
     all_n=set(names.words())
     lemmatizer = WordNetLemmatizer()
     for post in groups.data: 
-         cleaned.append(' '.join([lemmatizer.lemmatize(word) for word in post.split() if letters_only(word) and word not in all_n]))
+         cleaned.append(' '.join([lemmatizer.lemmatize(word.lower()) for word in post.split() if letters_only(word) and word not in all_n]))
     
     lets_kmeans(count_words(cleaned),groups.target)
     input("press enter to continue")
