@@ -15,7 +15,7 @@ if __name__ == '__main__':
     
     for i in range(num_games):
         if i % 10 == 0 and i > 0:
-            env.render()
+            
             avg_score = np.mean(scores[max(0, i-10):(i+1)])
             print('episode: ', i,'score: ', score,
                  ' average score %.3f' % avg_score,
@@ -27,6 +27,7 @@ if __name__ == '__main__':
         observation = env.reset()
         score = 0
         while not done:
+            env.render()
             action = brain.chooseAction(observation)
             observation_, reward, done, info = env.step(action)
             score += reward
@@ -34,6 +35,7 @@ if __name__ == '__main__':
                                   done)
             observation = observation_
             brain.learn()
+            print(done,i)
 
         scores.append(score)
 
@@ -41,3 +43,5 @@ if __name__ == '__main__':
     filename = str(num_games) + 'Games' + 'Gamma' + str(brain.GAMMA) + \
                'Alpha' + str(brain.ALPHA) + 'Memory' + \
                 str(brain.Q_eval.fc1_dims) + '-' + str(brain.Q_eval.fc2_dims) +'.png'
+
+    
