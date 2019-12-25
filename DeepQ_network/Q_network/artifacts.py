@@ -1,7 +1,6 @@
 from constants import *
 import random
 
-
 class DungeonSimulation:
     def __init__(self,length=5,slip=0.1,small=0.2,large=10):
         self.length=length  #total tiles
