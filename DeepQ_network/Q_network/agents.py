@@ -1,5 +1,6 @@
 import constants
 import random
+import tensorflow as tf
 class Drunkard:
     def __init__(self):
         self.q_table= None

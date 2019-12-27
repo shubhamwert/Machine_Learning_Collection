@@ -13,15 +13,18 @@ class DungeonSimulation:
         reward=0
         if random.random() < self.slip:    #random action
             action=not action
-        if action == Backward:                     #backward
-            reward=self.small
+        if action == Backward:
+            if self.state!=0:
+                self.state=0                     #backward
+                reward=self.small
+            reward=0
         if action == Forward:
             
             if self.state < self.length -1:
                 self.state +=1
                 reward=0
             else:
-                reward == self.large            #forward
+                reward = self.large            #forward
         
         return self.state,reward
     def reset(self):

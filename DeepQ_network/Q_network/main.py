@@ -18,9 +18,10 @@ def run(agent,iterations=1000,reward_list=[]):
         agent.update(old_state,new_state,action,reward)
         total_reward +=reward
         if i%10 ==0:
-            print("step : ",i," reward : ",total_reward)
+            print("\b\b..")
+            # print("step : ",i," reward : ",total_reward)
             total_reward_list=total_reward_list+[total_reward]
-            print(total_reward_list)
+            # print(total_reward_list)
 
 
         time.sleep(0.0001)
@@ -31,9 +32,9 @@ def run(agent,iterations=1000,reward_list=[]):
 
 
 if __name__ == "__main__":
-    i=10000000
+    i=100
 
-    agent=[Smart(5,lr=0.01,exploration_rate=2.0,iterations=i),Greedy(5),Drunkard()]
+    agent=[deepSmart(),Smart(5,lr=0.01,exploration_rate=2.0,iterations=i),Greedy(5),Drunkard()]
     reward_list=[0,0,0]
     
     p=0
