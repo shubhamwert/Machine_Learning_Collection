@@ -127,7 +127,7 @@ if __name__ == "__main__":
     episode_durations = []
     
 
-    num_episodes = 50
+    num_episodes = 500
     for i_episode in range(num_episodes):
      # Initialize the environment and state
      env.reset()
@@ -139,6 +139,8 @@ if __name__ == "__main__":
         # Select and perform an action
         action = select_action(policy_net,steps_done,state)
         _, reward, done, _ = env.step(action.item())
+        print("episode : ",i_episode,"reward : ",reward)
+
         reward = torch.tensor([reward], device=device)
         steps_done+=1
         # Observe new state
@@ -161,13 +163,12 @@ if __name__ == "__main__":
             episode_durations.append(t + 1)
             plot_durations()
             break
-        env.render()
     # Update the target network, copying all weights and biases in DQN
-     if i_episode % TARGET_UPDATE == 0:
-        target_net.load_state_dict(policy_net.state_dict())
-
+        if i_episode % TARGET_UPDATE == 0:
+            target_net.load_state_dict(policy_net.state_dict())
+        env.render()
      print('Complete')
-    env.render()
+     env.render()
     env.close()
-    plt.ioff()
     plt.show()
+    
